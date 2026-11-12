@@ -38,7 +38,7 @@ flowchart LR
     D --> E["⏰ Déclencheur quotidien"]
     E --> F["🤖 IA : résumé en points clés"]
     F --> G["📱 Bilan quotidien + KPI jetons sur Telegram"]
-    G -->|"/fait 3 15 17 : un message clôture une ou plusieurs actions"| D
+    G -->|"/fait 3 15 17 : un message clôture une ou plusieurs actions terminées"| D
 ```
 
 ## 🔍 Les détails qui font la différence
