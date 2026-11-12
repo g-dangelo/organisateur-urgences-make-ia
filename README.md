@@ -59,12 +59,12 @@ L'utilisateur vérifie en une seconde que le client, l'échéance et la priorit�
 sans avoir à ouvrir la base de données.
 
 **Exemple (contenu fictif) :**
-```
-✅ 15 - **Relancer Client X pour le devis n° 123**
-Status actuel : To do
-Priorité : Haute
-16 October à 10 h
-Projet : Chantier Alpha
+```mermaid
+sequenceDiagram
+    actor U as 🧑 Vous
+    participant A as 🤖 Assistant
+    U->>A: Rappelle-moi de relancer le client X pour le devis n° 123 demain avant 10 h, urgent pour le projet Alpha
+    A-->>U: C'est noté, je planifie l'envoi du devis à X pour demain à 10h.
 ```
 
 ### Clôturer une action d'un simple message
