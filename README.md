@@ -31,13 +31,14 @@ Un assistant permanent qui fonctionne avec une seule action : **envoyer un messa
 
 ```mermaid
 flowchart LR
-    A[🎤 Message texte ou vocal] --> B[Transcription]
-    B --> C[🤖 IA : extraction des champs]
-    C --> D[(Base Airtable)]
-    D --> E[⏰ Déclencheur quotidien]
-    E --> F[🤖 IA : résumé en points clés]
-    F --> G[📱 Bilan quotidien + KPI jetons]
-    G -->|/fait 3 15 17| D [un message suffit pour clôturer une ou plusieurs actions executées]
+    A["💬 Message Telegram"] --> B["🎙️ Transcription"]
+    B --> C["🤖 IA : extraction des champs"]
+    C --> D[("Base Airtable")]
+    C --> H["✅ Confirmation avec résumé sur Telegram"]
+    D --> E["⏰ Déclencheur quotidien"]
+    E --> F["🤖 IA : résumé en points clés"]
+    F --> G["📱 Bilan quotidien + KPI jetons sur Telegram"]
+    G -->|"/fait 3 15 17 : un message clôture une ou plusieurs actions"| D
 ```
 
 ## 🔍 Les détails qui font la différence
