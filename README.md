@@ -44,7 +44,7 @@ flowchart LR
 ### Le scénario dans Make
 Voici le scénario réel construit dans Make, qui relie Telegram, l'IA et la base Airtable :
 
-![Scénario Make de l'organisateur d'urgences](images/scenario-make.png)
+![Scénario Make de l'organisateur d'urgences](scenario-make.png)
 
 ## 🔍 Les détails qui font la différence
 Ce projet a été travaillé jusque dans ses détails. En résumé :
