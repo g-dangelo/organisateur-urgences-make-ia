@@ -61,7 +61,7 @@ sans avoir à ouvrir la base de données.
 **Exemple (contenu fictif) :**
 ```mermaid
 sequenceDiagram
-    actor U as 🧑 Vous
+    actor U as Vous
     participant A as 🤖 Assistant
     U->>A: Rappelle-moi de relancer le client X pour le devis n° 123 demain avant 10 h, urgent pour le projet Alpha
     A-->>U: C'est noté, je planifie l'envoi du devis à X pour demain à 10h.
