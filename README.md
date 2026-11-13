@@ -50,7 +50,7 @@ flowchart LR
 
 ### Scénario 1 : réception et clôture des messages
 
-![Scénario 1 : réception des messages](scenario-1-reception.png)
+![Scénario 1 : réception des messages](images/scenario_make_1.png)
 
 1. **Déclencheur Telegram** : le scénario démarre à chaque message reçu.
 2. **Routeur** : si le message commence par `/fait` ou `/done`, il part vers la clôture ; sinon, vers l'ajout.
@@ -62,7 +62,7 @@ flowchart LR
 
 ### Scénario 2 : bilan quotidien
 
-![Scénario 2 : bilan quotidien](scenario-2-bilan.png)
+![Scénario 2 : bilan quotidien](images/scenario_make_2.png)
 
 1. **Déclencheur planifié** : lancement chaque jour à heure fixe.
 2. **Airtable** : recherche des actions *To do* ou *In progress* à échéance du jour ou des 24 h suivantes.
