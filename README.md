@@ -89,14 +89,14 @@ Les tests ont porté sur une seule question : **quelles fonctionnalités ajouter
 
 Chaque module exécuté consomme des crédits. Ajouter un module améliore la précision ou le confort d'usage, mais réduit la durée pendant laquelle le projet peut tourner. J'ai donc testé chaque fonctionnalité en mesurant son coût.
 
-| Fonctionnalité testée | Modules ajoutés | Crédits par exécution | Apport pour l'utilisateur | Décision |
+| Fonctionnalité testée | Apport pour l'utilisateur | Décision |
 | --- | --- | --- | --- | --- |
-| Transcription vocale | [X] | [X] | Dicter au lieu de taper | ✅ Gardée |
-| Extraction des champs par l'IA | [X] | [X] | Plus de saisie manuelle | ✅ Gardée |
-| Confirmation avec résumé | [X] | [X] | Vérifier en une seconde | ✅ Gardée |
-| Clôture `/fait` | [X] | [X] | Terminer sans ouvrir d'application | ✅ Gardée |
-| Clôture groupée (`/fait 3 15 17`) | [X] | [X] | Moins de crédits consommés | ✅ Gardée |
-| Suivi des jetons dans le bilan | [X] | [X] | Piloter sa consommation | ✅ Gardé |
+| Transcription vocale | Dicter au lieu de taper | ✅ Gardée |
+| Extraction des champs par l'IA | Plus de saisie manuelle | ✅ Gardée |
+| Confirmation avec résumé | Vérifier en une seconde | ✅ Gardée |
+| Clôture `/fait` | Terminer sans ouvrir d'application | ✅ Gardée |
+| Clôture groupée (`/fait 3 15 17`) | Moins de crédits consommés | ✅ Gardée |
+| Suivi des jetons dans le bilan |Piloter sa consommation | ✅ Gardé |
 
 ### Calcul du budget et période de déploiement
 
@@ -108,7 +108,7 @@ Consommation mensuelle = (ajouts × crédits par ajout)
 Période de déploiement = 1 000 crédits ÷ consommation moyenne par jour
 ```
 
-Avec [X] crédits par ajout, [X] par clôture et [X] par bilan, le budget de **120 jetons** (1 jeton = 1 ajout) correspond à **[X] crédits** par mois. L'assistant peut donc fonctionner **[30 jours]** sur une période de réinitialisation, avec **[X] crédits** de marge.
+Avec 5 crédits par ajout, 2+N (N=nombre d'action cloturées dans le même message) par clôture et [3] par bilan, le budget de **120 jetons** (1 jeton = 1 ajout) correspond à **890 crédits** par mois. L'assistant peut donc fonctionner **30 jours** sur une période de réinitialisation, avec **110 crédits** de marge.
 
 **Compromis assumé :** les clôtures groupées économisent des crédits, mais le bilan peut afficher pendant 2 ou 3 jours des actions déjà faites. Avec une licence Core ou Pro, cette contrainte disparaît.
 
