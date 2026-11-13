@@ -1,31 +1,38 @@
 # 🗓️ Organisateur d'urgences : un assistant personnel no-code
 
-> **Dictez une urgence, l'IA la classe, et chaque matin vous recevez votre journée résumée par texto.**
+> **Dictez une urgence, l'IA la classe, et chaque matin vous recevez votre journée résumée sur Telegram.**
 
 ## ✨ En bref
-- 🎤 **Zéro friction** : une urgence se dicte en une phrase, l'IA la structure toute seule
-- 💬 **Via Telegram** : un simple message suffit, et une confirmation avec résumé arrive immédiatement
-- ⏰ **Assistant permanent** : un bilan quotidien des urgences arrive par texto
-- ✅ **Pilotable par message** : une commande suffit pour clôturer une action
-- 🪙 **Pensé pour ses contraintes** : un système de jetons surveille la consommation de crédits AI pour pouvoir se piloter.
+
+- 🎤 **Une phrase suffit** : l'urgence se dicte en vocal ou s'écrit, l'IA la structure toute seule
+- 💬 **Confirmation immédiate** : un résumé de ce que l'IA a compris revient aussitôt
+- ⏰ **Bilan quotidien** : les urgences du jour et des prochaines 24 h arrivent à heure fixe
+- ✅ **Clôture en un message** : `/fait 12` et l'action est terminée
 
 ## 🎯 Le problème
-Un auto-entrepreneur jongle entre des devis, des projets clients et des urgences de dernière minute.
-Noter une relance dans un agenda classique demande d'ouvrir l'application, de chercher la bonne date,
-la bonne heure, puis de tout saisir. Résultat : on repousse, on oublie, et l'urgence devient un problème.
+
+Un auto-entrepreneur jongle entre devis, projets clients et urgences de dernière minute. Noter une relance dans un agenda classique demande d'ouvrir l'application, de chercher la date, l'heure, de tout saisir. Résultat : on repousse, on oublie, et l'urgence devient un problème.
 
 ## 💡 La solution
-Un assistant permanent qui fonctionne avec une seule action : **envoyer un message, écrit ou vocal**.
+
+Un assistant qui fonctionne avec **une seule action : envoyer un message, écrit ou vocal**.
 
 **Exemple de message :**
+
 > « Rappelle-moi de relancer le client X pour le devis n° 123 demain avant 10 h, c'est urgent pour le projet Alpha. »
 
-**Ce que fait l'assistant :**
-1. L'utilisateur envoie son message à l'assistant sur **Telegram**.
-2. L'IA analyse la phrase et en extrait des champs structurés (client, action à mener, échéance, priorité, projet).
-3. Les informations sont enregistrées automatiquement dans la base de données.
-4. **Un message de confirmation avec résumé** est renvoyé aussitôt sur Telegram, pour vérifier que l'IA a bien compris.
-5. **Chaque jour à heure fixe**, le bilan des urgences du jour et des prochaines 24 h arrive sur Telegram.
+## 📱 Pourquoi plutôt qu'un agenda de téléphone ?
+
+C'est le cœur du projet : **moins d'efforts pour noter, moins d'efforts pour mettre à jour**.
+
+| | Agenda standard | Organisateur d'urgences |
+| --- | --- | --- |
+| **Ajouter** | Ouvrir l'app, choisir date, heure, titre | Dicter une phrase |
+| **Priorité** | Souvent absente | Détectée par l'IA |
+| **Vérifier** | Relire soi-même | Résumé de confirmation immédiat |
+| **Vue d'ensemble** | Une liste d'événements | Un bilan quotidien priorisé |
+| **Clôturer** | Ouvrir, chercher, cocher | `/fait 12` (ou plusieurs : `/fait 3 15 17`) |
+| **Historique** | Selon l'app | Conservé dans la base, prêt pour l'analyse |
 
 ## 🔄 Fonctionnement
 
@@ -34,64 +41,78 @@ flowchart LR
     A["💬 Message Telegram"] --> B["🎙️ Transcription"]
     B --> C["🤖 IA : extraction des champs"]
     C --> D[("Base Airtable")]
-    C --> H["✅ Confirmation avec résumé sur Telegram"]
+    C --> H["✅ Confirmation avec résumé"]
     D --> E["⏰ Déclencheur quotidien"]
     E --> F["🤖 IA : résumé en points clés"]
-    F --> G["📱 Bilan quotidien + KPI jetons sur Telegram"]
-    G -->|"/fait 3 15 17 : un message clôture une ou plusieurs actions terminées"| D
+    F --> G["📱 Bilan quotidien + KPI jetons"]
+    G -->|"/fait 3 15 17"| D
 ```
 
-### Le scénario dans Make
-Voici le scénario réel construit dans Make, qui relie Telegram, l'IA et la base Airtable :
+### Scénario 1 : réception et clôture des messages
 
-![Scénario Make de l'organisateur d'urgences](scenario-make.png)
+![Scénario 1 : réception des messages](scenario-1-reception.png)
 
-## 🔍 Les détails qui font la différence
-Ce projet a été travaillé jusque dans ses détails. En résumé :
+1. **Déclencheur Telegram** : le scénario démarre à chaque message reçu.
+2. **Routeur** : si le message commence par `/fait` ou `/done`, il part vers la clôture ; sinon, vers l'ajout.
+3. **Transcription** (si vocal) : le message audio est converti en texte.
+4. **IA (Gemini)** : extraction des champs (titre, type, projet, date limite, priorité).
+5. **Airtable** : création de l'action avec le statut *To do*.
+6. **Confirmation** : un résumé de ce que l'IA a compris est renvoyé sur Telegram.
+7. **Branche `/fait`** : récupération des numéros, puis passage du statut à *Fait* dans Airtable.
 
-- 🔁 **Confirmation instantanée** : après chaque ajout, l'IA renvoie un résumé de ce qu'elle a compris
-- ✅ **Clôture par message** : `/fait` ou `/done` suivi des numéros identifiants de l'actions, sans ouvrir aucune application
-- 🗃️ **Historique conservé** : une action terminée quitte le bilan mais reste dans la base de données
-- 🪙 **Budget mensuel flexible** : un système de jetons adapté aux crédits de la version gratuite de Make
-- 📊 **Bilan = KPI** : chaque bilan se termine par le suivi du solde de jetons du mois
-- ⚖️ **Un arbitrage assumé** entre confort d'usage et coût d'exploitation
+### Scénario 2 : bilan quotidien
 
-Le détail de chacun est ci-dessous 👇
+![Scénario 2 : bilan quotidien](scenario-2-bilan.png)
 
-### Une confirmation après chaque ajout
-Dès qu'une action est enregistrée, l'IA renvoie sur Telegram un **résumé de ce qu'elle a compris**.
-L'utilisateur vérifie en une seconde que le client, l'échéance et la priorité sont corrects,
-sans avoir à ouvrir la base de données.
+1. **Déclencheur planifié** : lancement chaque jour à heure fixe.
+2. **Airtable** : recherche des actions *To do* ou *In progress* à échéance du jour ou des 24 h suivantes.
+3. **IA (Gemini)** : rédaction du bilan en points clés, avec l'identifiant de chaque action.
+4. **Calcul du KPI** : nombre de jetons utilisés ce mois-ci sur le budget de 120.
+5. **Telegram** : envoi du bilan et du solde de jetons.
 
-**Exemple (contenu fictif) :**
-```mermaid
-sequenceDiagram
-    actor U as Vous
-    participant A as 🤖 Assistant
-    U->>A: Rappelle-moi de relancer le client X pour le devis n° 123 demain avant 10 h, urgent pour le projet Alpha
-    A-->>U: C'est noté, je planifie l'envoi du devis à X pour demain à 10h.
+## 🔍 En pratique
+
+**Confirmation après chaque ajout** (exemple fictif) :
+
+```
+Vous :      Rappelle-moi de relancer le client X pour le devis n° 123
+            demain avant 10 h, urgent pour le projet Alpha
+Assistant : C'est noté, je planifie la relance du client X
+            pour demain à 10h.
 ```
 
-### Clôturer une action d'un simple message
-Chaque action du bilan quotidien possède un identifiant. Pour la clôturer, il suffit d'envoyer
-`/fait 12` ou `/done 12`. On peut aussi en regrouper plusieurs : `/fait 3 15 17`.
+**Bilan quotidien** (exemple fictif) :
 
-- Le statut passe automatiquement de **To do** ou **In progress** à **Done**
-- L'action **reste dans la base de données** (historique et analyses possibles)
-- Elle **n'apparaît plus dans le bilan suivant**, qui reste lisible
+```
+Bilan du jour
+1. [#3]  Relancer le client X, devis n° 123 (avant 10 h) : URGENT
+2. [#15] Envoyer la facture du projet Alpha
+3. [#17] Préparer le rendez-vous de jeudi
 
-### Un budget de jetons pensé pour la version gratuite de Make
+Jetons du mois : 14/120 · encore 106 disponibles
+```
 
-> **La gratuité est ici une contrainte de conception étudiée**, et non une limite subie.
-> Avec une licence **Core ou Pro de Make**, cette contrainte disparaît.
+**Clôture** : `/fait 3 15 17` passe les trois actions au statut *Fait*. Elles quittent le bilan mais restent dans la base.
 
-La version gratuite de Make offre **1 000 crédits par mois**, réinitialisés tous les 30 jours.
-J'ai donc raisonné en **budget mensuel**, et non en quota quotidien rigide, pour ne jamais pénaliser l'utilisateur.
-**Un jeton correspond à une action ajoutée.** Le budget est de **120 jetons par mois**, soit **3 actions par jour en moyenne**.
-Ce chiffre n'est pas arbitraire : il a été calculé **après avoir réservé les crédits nécessaires** aux **messages de confirmation**, aux **clôtures groupées (`/fait`)** et au **bilan quotidien**, de façon à ce que l'ensemble tienne dans les 1 000 crédits du mois.
-Seules les actions ajoutées font avancer le compteur ; tout le reste est déjà compté dans le budget.
+## 🗃️ Structure de la base de données
 
-**Moyenne conseillée, calculée sur le mois :**
+| Champ | Type | Exemple |
+| --- | --- | --- |
+| ID | Numéro automatique | 15 |
+| Titre | Texte | Rappelle-moi de renvoyer le devis à jour pour le client X demain à 10h, c'est très urgent ! Projet : Alpha |
+| Type | Choix | Tâche / Évènement / Risque / Information |
+| Projet | Texte | Alpha |
+| Date limite | Date et heure | 16/10/2026 10:00 |
+| Priorité | Choix | Haute / Normale / Basse |
+| Statut | Choix | To do / In progress / Fait / Annulé |
+| Description | Texte | C'est noté, je planifie l'envoi du devis à X pour demain à 10h. |
+| Date de création | Date et heure | 15/10/2026 10:00 |
+
+## 🪙 Contrainte de coût : la version gratuite de Make
+
+La version gratuite offre 1 000 crédits par mois. J'ai donc fixé un budget de **120 jetons par mois** (1 jeton = 1 action ajoutée), soit environ 4 actions par jour **en moyenne, pas en plafond**. Le reste des crédits est réservé aux confirmations, aux clôtures et au bilan. Le solde est affiché à la fin de chaque bilan.
+
+**Compromis assumé :** les clôtures groupées économisent des crédits, mais le bilan peut afficher 2 ou 3 jours des actions déjà faites. Avec une licence Core ou Pro, cette contrainte disparaît.
 
 | Action | Moyenne conseillée par jour | Compte dans le compteur ? |
 |---|---|---|
@@ -105,55 +126,20 @@ Seules les actions ajoutées font avancer le compteur ; tout le reste est déjà
 
 Ce qui compte, c'est l'équilibre sur le mois.
 
-### Le bilan quotidien comme tableau de bord (KPI)
-Chaque bilan se termine par un **indicateur de suivi** : le solde de jetons du mois.
-L'utilisateur voit en un coup d'œil où il en est et ajuste son rythme.
-
-**Exemple de bilan reçu (contenu fictif) :**
-
-```
-Bilan du jour
-1. [#3] Relancer le client X, devis n° 123 (avant 10 h) : URGENT
-2. [#15] Envoyer la facture du projet Alpha
-3. [#17] Préparer le rendez-vous de jeudi
-
-# Jetons du mois : 14/90 * encore 76 Jetons disponibles
-```
-Dans cet exemple, **14 actions** ont été ajoutées ce mois-ci sur un budget de **90**, il reste donc **76 jetons**.
-
-### Le compromis assumé
-Regrouper les clôtures économise des jetons, mais le bilan peut afficher pendant 2 ou 3 jours
-des actions déjà exécutées. J'ai choisi de privilégier un budget maîtrisé plutôt qu'une mise à jour instantanée.
-
-> 💡 Ce choix vient de mon métier : toute solution a un coût d'exploitation, et arbitrer entre
-> confort d'usage et coût est une décision de conception.
-
-**Évolution :** avec une licence Core ou Pro, le suivi de jetons et le regroupement deviennent optionnels, et chaque action peut être clôturée en temps réel.
-
-## 🗃️ Structure de la base de données
-
-| Champ | Type | Exemple |
-|---|---|---|
-| ID | Numéro automatique | 15 |
-| Titre | Texte | Rappelle-moi de renvoyer le devis à jour pour le client X demain à 10h, c'est très urgent! Projet: Alpha |
-| Type | Choix | Tâche / Evènement / Risque / Information |
-| Projet | Texte | Alpha |
-| Date limite | Date et heure | 16/10/2026 10:00 |
-| Priorité | Choix | Haute / Normale / Basse |
-| Statut | Choix | To do / In progress / Fait / Annuler |
-| Description | Texte | C'est noté, je planifie l'envoi du devis à X pour demain à 10h. |
-| Date de création | Date et heure | 15/10/2026 10:00 |
-
 ## 🧰 Outils utilisés
-- **Make** : orchestration du scénario (déclencheurs, enchaînement des actions)
+
+- **Make** : orchestration des scénarios
 - **Airtable** : base de données des urgences
-- **IA (Gemini)** : analyse du langage naturel et rédaction du résumé
-- **Telegram** : canal de communication (envoi des urgences, confirmations, bilan quotidien et commandes `/fait`)
+- **Gemini** : analyse du langage naturel et rédaction des résumés
+- **Telegram** : canal d'échange (messages, confirmations, bilan, commandes)
 
 ## 🔮 Pistes d'amélioration
+
 - Tableau de bord **Power BI** : urgences par client, par priorité, délais de traitement
 - Synchronisation avec un agenda existant
 - Relance automatique des urgences non traitées
+- Clôture en temps réel avec une licence payante
 
 ---
+
 *Projet conçu en no-code avec l'appui de l'IA générative, dans le cadre de ma formation INKREA (2026).*
