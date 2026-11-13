@@ -90,7 +90,7 @@ Les tests ont porté sur une seule question : **quelles fonctionnalités ajouter
 Chaque module exécuté consomme des crédits. Ajouter un module améliore la précision ou le confort d'usage, mais réduit la durée pendant laquelle le projet peut tourner. J'ai donc testé chaque fonctionnalité en mesurant son coût.
 
 | Fonctionnalité testée | Apport pour l'utilisateur | Décision |
-| --- | --- | --- | --- | --- |
+| --- | --- | --- |
 | Transcription vocale | Dicter au lieu de taper | ✅ Gardée |
 | Extraction des champs par l'IA | Plus de saisie manuelle | ✅ Gardée |
 | Confirmation avec résumé | Vérifier en une seconde | ✅ Gardée |
