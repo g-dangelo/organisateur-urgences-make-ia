@@ -1,6 +1,8 @@
 # 🗓️ Organisateur d'urgences : un assistant personnel no-code
 
 > **Dictez une urgence, l'IA la classe, et chaque matin vous recevez votre journée résumée sur Telegram.**
+>
+> [![Voir la présentation en vidéo (5 min)](images/video-apercu.png)]((https://youtu.be/becUKYogyUg))
 
 ## ✨ En bref
 
