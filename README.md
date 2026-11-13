@@ -74,10 +74,10 @@ flowchart LR
 
 **Chaque action reçoit un numéro unique** à sa création (champ ID d'Airtable, jamais réutilisé). Ce numéro apparaît dans le bilan quotidien : c'est lui qu'on envoie pour clôturer.
 
-<table>
+<table width="100%">
 <tr>
-<td align="center"><img src="images/telegram-confirmation.svg" width="260"><br><sub>Confirmation après chaque ajout</sub></td>
-<td align="center"><img src="images/telegram-bilan.svg" width="260"><br><sub>Bilan quotidien</sub></td>
+<td width="50%" align="center" valign="top"><img src="images/telegram-confirmation.svg" width="100%" alt="Confirmation après chaque ajout"></td>
+<td width="50%" align="center" valign="top"><img src="images/telegram-bilan.svg" width="100%" alt="Bilan quotidien"></td>
 </tr>
 </table>
 
