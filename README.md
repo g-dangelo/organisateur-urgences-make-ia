@@ -83,6 +83,53 @@ flowchart LR
 
 **Clôture** : dans le bilan ci-dessus, `/fait 31 15 17` passe les actions `#31`, `#15` et `#17` au statut *Fait*. Elles quittent le bilan mais restent dans la base.
 
+## 🧪 Tests : performance contre crédits
+
+Les tests ont porté sur une seule question : **quelles fonctionnalités ajouter pour rendre l'assistant performant, tout en restant dans les 1 000 crédits mensuels de la version gratuite de Make ?**
+
+Chaque module exécuté consomme des crédits. Ajouter un module améliore la précision ou le confort d'usage, mais réduit la durée pendant laquelle le projet peut tourner. J'ai donc testé chaque fonctionnalité en mesurant son coût.
+
+| Fonctionnalité testée | Modules ajoutés | Crédits par exécution | Apport pour l'utilisateur | Décision |
+| --- | --- | --- | --- | --- |
+| Transcription vocale | [X] | [X] | Dicter au lieu de taper | ✅ Gardée |
+| Extraction des champs par l'IA | [X] | [X] | Plus de saisie manuelle | ✅ Gardée |
+| Confirmation avec résumé | [X] | [X] | Vérifier en une seconde | ✅ Gardée |
+| Clôture `/fait` | [X] | [X] | Terminer sans ouvrir d'application | ✅ Gardée |
+| Clôture groupée (`/fait 3 15 17`) | [X] | [X] | Moins de crédits consommés | ✅ Gardée |
+| Suivi des jetons dans le bilan | [X] | [X] | Piloter sa consommation | ✅ Gardé |
+
+### Calcul du budget et période de déploiement
+
+```
+Consommation mensuelle = (ajouts × crédits par ajout)
+                       + (clôtures × crédits par clôture)
+                       + (30 bilans × crédits par bilan)
+
+Période de déploiement = 1 000 crédits ÷ consommation moyenne par jour
+```
+
+Avec [X] crédits par ajout, [X] par clôture et [X] par bilan, le budget de **120 jetons** (1 jeton = 1 ajout) correspond à **[X] crédits** par mois. L'assistant peut donc fonctionner **[30 jours]** sur une période de réinitialisation, avec **[X] crédits** de marge.
+
+**Compromis assumé :** les clôtures groupées économisent des crédits, mais le bilan peut afficher pendant 2 ou 3 jours des actions déjà faites. Avec une licence Core ou Pro, cette contrainte disparaît.
+
+## 🤖 Le prompt d'extraction
+
+Le prompt transforme une phrase libre en champs structurés (titre, type, projet, date limite, priorité).
+
+<details>
+<summary>Voir le prompt Gemini</summary>
+
+```text
+[colle ici ton prompt, sans clé API ni donnée personnelle]
+```
+
+</details>
+
+**Ce que le prompt impose :**
+- [le format de sortie attendu, par exemple des champs séparés ou du JSON]
+- [la règle pour la priorité, et comment les dates relatives comme « demain » sont converties]
+- [le comportement quand une information manque]
+
 ## 🗃️ Structure de la base de données
 
 | Champ | Type | Exemple |
@@ -121,6 +168,16 @@ Ce qui compte, c'est l'équilibre sur le mois.
 - **Airtable** : base de données des urgences
 - **Gemini** : analyse du langage naturel et rédaction des résumés
 - **Telegram** : canal d'échange (messages, confirmations, bilan, commandes)
+
+## 🎓 Compétences démontrées
+
+- **Analyse du besoin** : partir d'un problème réel (l'urgence oubliée) et le traduire en parcours simple
+- **Conception de base de données** : modèle Airtable avec identifiant unique, types, priorités et statuts
+- **Prompt engineering** : transformer une phrase libre en champs structurés avec Gemini
+- **Automatisation no-code** : deux scénarios Make reliés à Telegram et Airtable
+- **Arbitrage coût / performance** : mesurer le coût de chaque module et dimensionner un budget mensuel
+- **Approche produit** : confirmation immédiate, clôture par commande, bilan priorisé
+- **Préparation à l'analyse** : historique conservé pour un futur dashboard Power BI
 
 ## 🔮 Pistes d'amélioration
 
