@@ -159,7 +159,7 @@ Gemini intervient deux fois : il **structure** chaque message, puis **rédige** 
 
 | Ce que j'écris | Ce que Gemini en extrait |
 | --- | --- |
-| « Rappelle-moi de relancer le client X pour le devis 123 demain avant 10 h, urgent pour le projet Alpha » | **Titre** : Relancer le client X pour le devis 123<br>**Type** : Tâche<br>**Projet** : Alpha<br>**Date limite** : demain, 10 h<br>**Priorité** : Haute |
+| « Rappelle-moi de relancer le client X pour le devis 123 demain avant 10 h, urgent pour le projet Alpha » | **Num** + **Prochaine étape** : *31 - Relancer le client X pour le devis 123<br>**Status actuel** : To do <br>**Priorité** : Haute<br>14 November à 10 h<br>**Projet** : Alpha |
 
 </details>
 
