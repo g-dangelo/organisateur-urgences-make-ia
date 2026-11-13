@@ -2,11 +2,13 @@
 
 > **Dictez une urgence, l'IA la classe, et chaque matin vous recevez votre journée résumée sur Telegram.**
 >
-  <a href="(https://youtu.be/TDuycLjmklA)">
-    <img src="images/video-apercu.png" alt="Voir la présentation en vidéo (3 min)" width="400">
+  <p align="center">
+  <a href="https://youtu.be/TDuycLjmklA">
+    <img src="images/video-apercu.png" alt="Voir la présentation en vidéo (2 min)" width="400">
   </a>
   <br>
-  <sub>▶️ Présentation en 3 minutes, générée avec NotebookLM (Gemini). Ctrl + clic pour l'ouvrir dans un nouvel onglet.</sub>
+  <sub>▶️ Présentation en 2 minutes, générée avec NotebookLM (Gemini). Ctrl + clic pour l'ouvrir dans un nouvel onglet.</sub>
+</p>
 
 ## ✨ En bref
 
