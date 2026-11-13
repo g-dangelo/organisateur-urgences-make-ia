@@ -74,23 +74,14 @@ flowchart LR
 
 **Chaque action reçoit un numéro unique** à sa création (champ ID d'Airtable, jamais réutilisé). Ce numéro apparaît dans le bilan quotidien : c'est lui qu'on envoie pour clôturer.
 
-**Confirmation après chaque ajout** (exemple fictif) :
+<table>
+<tr>
+<td align="center"><img src="images/telegram-confirmation.svg" width="260"><br><sub>Confirmation après chaque ajout</sub></td>
+<td align="center"><img src="images/telegram-bilan.svg" width="260"><br><sub>Bilan quotidien</sub></td>
+</tr>
+</table>
 
-![Texte Telegram](images/telegram-confirmation.svg)
-
-**Bilan quotidien** (exemple fictif) :
-
-```
-Bilan du jour
-1. [#3]  Relancer le client X, devis n° 123 (avant 10 h) : URGENT
-2. [#15] Envoyer la facture du projet Alpha
-3. [#17] Préparer le rendez-vous de jeudi
-
-Jetons du mois : 14/120 · encore 106 disponibles
-```
-![Scénario : bilan quotidien](images/bilan_make.png)
-
-**Clôture** : dans le bilan ci-dessus, `/fait 3 15 17` passe les actions `#3`, `#15` et `#17` au statut *Fait*. Elles quittent le bilan mais restent dans la base.
+**Clôture** : dans le bilan ci-dessus, `/fait 31 15 17` passe les actions `#31`, `#15` et `#17` au statut *Fait*. Elles quittent le bilan mais restent dans la base.
 
 ## 🗃️ Structure de la base de données
 
