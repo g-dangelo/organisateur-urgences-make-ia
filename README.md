@@ -2,7 +2,13 @@
 
 > **Dictez une urgence, l'IA la classe, et chaque matin vous recevez votre journée résumée sur Telegram.**
 >
-> [![Voir la présentation en vidéo (5 min)](images/video-apercu.png)]((https://youtu.be/becUKYogyUg))
+<p align="center">
+  <a href="https://youtu.be/TON-LIEN">
+    <img src="images/video-apercu.png" alt="Voir la présentation en vidéo (3 min)" width="400">
+  </a>
+  <br>
+  <sub>▶️ Présentation en 3 minutes, générée avec NotebookLM (Gemini) à partir de ce README</sub>
+</p>
 
 ## ✨ En bref
 
