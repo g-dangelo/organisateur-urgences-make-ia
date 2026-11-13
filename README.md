@@ -7,7 +7,12 @@
     <img src="images/video-apercu.png" alt="Voir la présentation en vidéo (3 min)" width="200">
   </a>
   <br>
-  <sub>▶️ Présentation en 3 minutes, générée avec NotebookLM (Gemini). Ctrl + clic pour l'ouvrir dans un nouvel onglet autrement click sur le bouton arrier pour revenir à cette page.</sub>
+  <sub>▶️ Présentation en 3 minutes, générée avec NotebookLM (Gemini). Ctrl + clic pour l'ouvrir dans un nouvel onglet autrement click sur le bouton arrier pour revenir à cette page.
+  <br>
+    <a href="https://youtu.be/TDuycLjmklA">
+    Voir la présentation Ctrl + click
+  </a>
+  </sub>
 </p>
 
 ## ✨ En bref
