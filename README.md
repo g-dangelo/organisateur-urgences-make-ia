@@ -7,7 +7,7 @@
 - 🎤 **Une phrase suffit** : l'urgence se dicte en vocal ou s'écrit, l'IA la structure toute seule
 - 💬 **Confirmation immédiate** : un résumé de ce que l'IA a compris revient aussitôt
 - ⏰ **Bilan quotidien** : les urgences du jour et des prochaines 24 h arrivent à heure fixe
-- ✅ **Clôture en un message** : `/fait 12` et l'action est terminée
+- ✅ **Clôture en un message** : chaque action a un numéro unique, affiché dans le bilan quotidien. `/fait 12` suffit pour la terminer
 
 ## 🎯 Le problème
 
@@ -72,6 +72,8 @@ flowchart LR
 
 ## 🔍 En pratique
 
+**Chaque action reçoit un numéro unique** à sa création (champ ID d'Airtable, jamais réutilisé). Ce numéro apparaît dans le bilan quotidien : c'est lui qu'on envoie pour clôturer.
+
 **Confirmation après chaque ajout** (exemple fictif) :
 
 ```
@@ -92,7 +94,7 @@ Bilan du jour
 Jetons du mois : 14/120 · encore 106 disponibles
 ```
 
-**Clôture** : `/fait 3 15 17` passe les trois actions au statut *Fait*. Elles quittent le bilan mais restent dans la base.
+**Clôture** : dans le bilan ci-dessus, `/fait 3 15 17` passe les actions `#3`, `#15` et `#17` au statut *Fait*. Elles quittent le bilan mais restent dans la base.
 
 ## 🗃️ Structure de la base de données
 
