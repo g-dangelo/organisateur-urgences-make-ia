@@ -96,6 +96,7 @@ Chaque module exécuté consomme des crédits. Ajouter un module améliore la pr
 | Confirmation avec résumé | Vérifier en une seconde | ✅ Gardée |
 | Clôture `/fait` | Terminer sans ouvrir d'application | ✅ Gardée |
 | Clôture groupée (`/fait 3 15 17`) | Moins de crédits consommés | ✅ Gardée |
+| Réception automatique du bilan |La journée est organisée par priorités | ✅ Gardé |
 | Suivi des jetons dans le bilan |Piloter sa consommation | ✅ Gardé |
 
 ### Calcul du budget et période de déploiement
