@@ -156,9 +156,9 @@ Si l'échéance est ambiguë, renvoie null.N'invente jamais un projet.\n\nN'ajou
 </details>
 
 **Ce que le prompt impose :**
-- [le format de sortie attendu, par exemple des champs séparés ou du JSON]
-- [la règle pour la priorité, et comment les dates relatives comme « demain » sont converties]
-- [le comportement quand une information manque]
+- Le format de sortie attendu: application JSON qui permet de remplir les champs dans Airtable de façon structurée sans création d'erreurs
+- La priorité et les dates sont converties et standardisés depuis un message vocal avec termes familiers ("ex: demain")
+- Si une information est manquante l'application ne s'arrête pas, mais prévois des champs vides et, surtout, ne les invente pas 
 
 ## 🗃️ Structure de la base de données
 
