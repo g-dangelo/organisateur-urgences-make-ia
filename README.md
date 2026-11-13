@@ -153,6 +153,14 @@ Si l'échéance est ambiguë, renvoie null.N'invente jamais un projet.\n\nN'ajou
 }
 ```
 
+## 🤖 Gemini à l'œuvre
+
+Gemini intervient deux fois : il **structure** chaque message, puis **rédige** le bilan quotidien.
+
+| Ce que j'écris | Ce que Gemini en extrait |
+| --- | --- |
+| « Rappelle-moi de relancer le client X pour le devis 123 demain avant 10 h, urgent pour le projet Alpha » | **Titre** : Relancer le client X pour le devis 123<br>**Type** : Tâche<br>**Projet** : Alpha<br>**Date limite** : demain, 10 h<br>**Priorité** : Haute |
+
 </details>
 
 **Ce que le prompt impose :**
